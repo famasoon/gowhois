@@ -20,5 +20,5 @@ func main() {
 	if err != nil {
 		log.Fatalln(err)
 	}
-	fmt.Println("Get whois: " + result)
+	fmt.Println(result)
 }
