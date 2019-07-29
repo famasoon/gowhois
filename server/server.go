@@ -1,5 +1,9 @@
 package server
 
+import (
+	"net"
+)
+
 //TODO: Change to use struct to use Error message
 // type WhoisServer struct {
 //     URL string
@@ -340,9 +344,12 @@ const (
 	INTERNIC     = "whois.internic.net"
 	VERISIGN_GRS = "whois.verisign-grs.com"
 	VOTING       = "whois.voting.tld-box.at"
+
+	IP_WHOIS_SERVER      = "whois.iana.org"
+	DEFAULT_WHOIS_SERVER = "whois-servers.net"
 )
 
-var Server = map[string]string{
+var server = map[string]string{
 	".abogado":                  ABOGADO,
 	".ac":                       AC,
 	".ac.ac":                    AC,
@@ -1728,4 +1735,17 @@ var Server = map[string]string{
 	".xn--unup4y":               DONUTS,
 	".xn--vhquv":                DONUTS,
 	".zone":                     DONUTS,
+}
+
+func GetWhoisServer(tld string) string {
+	value, ok := server[tld]
+	if ok != true {
+		ip := net.ParseIP(tld)
+		if ip != nil {
+			return IP_WHOIS_SERVER
+		} else {
+			return DEFAULT_WHOIS_SERVER
+		}
+	}
+	return value
 }
