@@ -1740,7 +1740,7 @@ var server = map[string]string{
 
 func GetWhoisServer(tld string) string {
 	value, ok := server[tld]
-	if ok != true {
+	if !ok {
 		ip := net.ParseIP(tld)
 		if ip != nil {
 			return IP_WHOIS_SERVER
