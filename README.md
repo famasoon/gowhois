@@ -5,7 +5,7 @@ gowhois is whois command implemented by Golang
 
 ## Installation
 ```sh
-go get -u github.com/famasoon/gowhois
+go install github.com/famasoon/gowhois@latest
 ```
 
 ## Usage
